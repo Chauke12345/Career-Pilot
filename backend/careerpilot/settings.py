@@ -38,13 +38,13 @@ SECRET_KEY = os.getenv(
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = [
-    "careerpilot.onrender.com",
+    "career-pilot-y6y9.onrender.com",
     "127.0.0.1",
     "localhost",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://careerpilot.onrender.com",
+    "https://career-pilot-y6y9.onrender.com",
 ]
 
 
