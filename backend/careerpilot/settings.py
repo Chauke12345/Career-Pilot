@@ -20,6 +20,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from datetime import timedelta
 import os
+import dj_database_url
 
 load_dotenv()
 
@@ -34,12 +35,16 @@ SECRET_KEY = os.getenv(
     "django-insecure-development-key"
 )
 
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = [
     "careerpilot.onrender.com",
     "127.0.0.1",
     "localhost",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://careerpilot.onrender.com",
 ]
 
 
@@ -74,10 +79,12 @@ INSTALLED_APPS = [
 
 
 # MIDDLEWARE
-
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
+
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -87,7 +94,11 @@ MIDDLEWARE = [
 ]
 
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://careerpilot.onrender.com",
+    "http://127.0.0.1:8000",
+    "http://localhost:8000",
+]
 
 
 ROOT_URLCONF = "careerpilot.urls"
@@ -118,10 +129,10 @@ WSGI_APPLICATION = "careerpilot.wsgi.application"
 # DATABASE
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    "default": dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=600
+    )
 }
 
 
@@ -156,11 +167,19 @@ USE_TZ = True
 
 # STATIC FILES
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ] if (BASE_DIR / "static").exists() else []
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 
 # DJANGO REST FRAMEWORK
