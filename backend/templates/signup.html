@@ -1,0 +1,86 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Career Pilot AI Signup</title>
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+
+
+<body>
+
+
+<div class="login-container">
+
+
+    <div class="login-card">
+
+
+        <h1>
+            🚀 Create Account
+        </h1>
+
+
+        <p>
+            Join Career Pilot AI and start your career journey.
+        </p>
+
+
+        <input 
+            id="username"
+            type="text"
+            placeholder="Username"
+            required
+        >
+
+
+        <input 
+            id="email"
+            type="email"
+            placeholder="Email"
+            required
+        >
+
+
+        <input 
+            id="password"
+            type="password"
+            placeholder="Password"
+            required
+        >
+
+
+        <button id="signupBtn">
+            Sign Up
+        </button>
+
+
+        <p id="message"></p>
+
+
+        <p>
+            Already have an account?
+            <a href="{% url 'login' %}">
+                Login
+            </a>
+        </p>
+
+
+    </div>
+
+
+</div>
+
+
+
+<script src="{% static 'signup.js' %}"></script>
+
+
+</body>
+
+</html>

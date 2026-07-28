@@ -1,0 +1,350 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Career Pilot AI | Applications
+    </title>
+
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+
+
+<body>
+
+
+<div class="dashboard">
+
+
+    <header class="dashboard-header">
+
+
+        <div>
+
+            <h1>
+                📄 Job Applications
+            </h1>
+
+
+            <p>
+                Manage your job applications in one place.
+            </p>
+
+
+        </div>
+
+
+
+        <a href="{% url 'dashboard' %}" class="dashboard-back-btn">
+    <span>←</span>
+    Dashboard
+</a>
+
+
+    </header>
+
+
+
+
+
+    <!-- Add New Application -->
+
+    <section class="panel">
+
+
+        <h2>
+            Add New Application
+        </h2>
+
+
+
+        <form id="applicationForm">
+
+
+            <input
+                type="text"
+                id="company"
+                placeholder="Company"
+                required
+            >
+
+
+
+            <input
+                type="text"
+                id="position"
+                placeholder="Position"
+                required
+            >
+
+
+
+            <input
+                type="text"
+                id="location"
+                placeholder="Location"
+            >
+
+
+
+
+            <select id="status">
+
+
+                <option value="Applied">
+                    Applied
+                </option>
+
+
+                <option value="Screening">
+                    Screening
+                </option>
+
+
+                <option value="Interview">
+                    Interview
+                </option>
+
+
+                <option value="Technical Test">
+                    Technical Test
+                </option>
+
+
+                <option value="Offer">
+                    Offer
+                </option>
+
+
+                <option value="Rejected">
+                    Rejected
+                </option>
+
+
+            </select>
+
+
+
+
+
+            <input
+                type="date"
+                id="date_applied"
+            >
+
+
+
+
+
+            <input
+                type="url"
+                id="job_link"
+                placeholder="Job Link"
+            >
+
+
+
+
+
+            <textarea
+                id="notes"
+                placeholder="Notes"
+            ></textarea>
+
+
+
+
+
+            <button type="submit">
+                Save Application
+            </button>
+
+
+
+        </form>
+
+
+    </section>
+
+
+
+
+
+
+
+    <!-- Application List -->
+
+    <section class="panel">
+
+
+        <h2>
+            Your Applications
+        </h2>
+
+
+
+
+        <table>
+
+
+            <thead>
+
+
+                <tr>
+
+                    <th>
+                        Company
+                    </th>
+
+
+                    <th>
+                        Position
+                    </th>
+
+
+                    <th>
+                        Status
+                    </th>
+
+
+                    <th>
+                        Date
+                    </th>
+
+
+                    <th>
+                        Actions
+                    </th>
+
+
+                </tr>
+
+
+            </thead>
+
+
+
+
+            <tbody id="applicationsBody">
+
+
+            </tbody>
+
+
+
+
+        </table>
+
+
+
+    </section>
+
+
+
+
+</div>
+<!-- Edit Application Modal -->
+
+<div id="editModal" class="modal">
+
+
+    <div class="modal-content">
+
+
+        <h2>Edit Application</h2>
+
+
+        <input
+        id="edit_company"
+        placeholder="Company">
+
+
+        <input
+        id="edit_position"
+        placeholder="Position">
+
+
+        <input
+        id="edit_location"
+        placeholder="Location">
+
+
+        <select id="edit_status">
+
+            <option value="Applied">
+                Applied
+            </option>
+
+            <option value="Screening">
+                Screening
+            </option>
+
+            <option value="Interview">
+                Interview
+            </option>
+
+            <option value="Technical Test">
+                Technical Test
+            </option>
+
+            <option value="Offer">
+                Offer
+            </option>
+
+            <option value="Rejected">
+                Rejected
+            </option>
+
+
+        </select>
+
+
+        <input
+        id="edit_job_link"
+        placeholder="Job Link">
+
+
+
+        <textarea
+        id="edit_notes"
+        placeholder="Notes">
+        </textarea>
+
+
+
+        <button onclick="saveEdit()">
+            Save Changes
+        </button>
+
+
+
+        <button onclick="closeEdit()">
+            Cancel
+        </button>
+
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
+<script src="{% static 'applications.js' %}"></script>
+
+
+
+</body>
+
+</html>

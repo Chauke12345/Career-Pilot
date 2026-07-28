@@ -1,0 +1,562 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Career Pilot AI Dashboard</title>
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+
+
+<body>
+
+
+<div class="dashboard">
+
+
+    <!-- HEADER -->
+
+    <header class="dashboard-header">
+
+
+        <div>
+
+            <h1>
+                🚀 Career Pilot AI
+            </h1>
+
+            <p>
+                Your AI-powered career command center
+            </p>
+
+        </div>
+
+
+        <button id="logoutBtn" type="button">
+
+            Logout
+
+        </button>
+
+
+    </header>
+
+
+
+
+
+    <!-- WELCOME -->
+
+    <section class="welcome">
+
+        <h2>
+            Welcome back 👋
+        </h2>
+
+        <p>
+            Track your applications, improve your skills,
+            and accelerate your career.
+        </p>
+
+    </section>
+
+
+
+
+
+
+
+    <!-- DASHBOARD STATS -->
+
+
+    <section class="stats">
+
+
+        <div class="card">
+
+            <h3>
+                📄 Applications
+            </h3>
+
+            <h2 id="totalApplications">
+                0
+            </h2>
+
+            <p>
+                Total applications
+            </p>
+
+        </div>
+
+
+
+
+
+        <div class="card">
+
+            <h3>
+                🎯 Interviews
+            </h3>
+
+            <h2 id="interviews">
+                0
+            </h2>
+
+            <p>
+                Interview opportunities
+            </p>
+
+        </div>
+
+
+
+
+
+
+        <div class="card">
+
+            <h3>
+                🏆 Offers
+            </h3>
+
+            <h2 id="offers">
+                0
+            </h2>
+
+            <p>
+                Successful applications
+            </p>
+
+        </div>
+
+
+
+
+
+
+
+        <div class="card">
+
+            <h3>
+                📈 Success Rate
+            </h3>
+
+            <h2 id="successRate">
+                0%
+            </h2>
+
+            <p>
+                Career progress
+            </p>
+
+        </div>
+
+
+
+
+
+
+
+        <div class="card">
+
+            <h3>
+                🧠 Skill Match
+            </h3>
+
+            <h2 id="matchScore">
+                0%
+            </h2>
+
+            <p>
+                Job compatibility
+            </p>
+
+        </div>
+
+
+
+
+
+
+        <div class="card">
+
+            <h3>
+                ✅ Skills Found
+            </h3>
+
+            <h2 id="skillsCount">
+                0
+            </h2>
+
+            <p>
+                Matching skills
+            </p>
+
+        </div>
+
+
+
+
+
+
+        <div class="card">
+
+            <h3>
+                ⚠ Missing Skills
+            </h3>
+
+            <h2 id="missingCount">
+                0
+            </h2>
+
+            <p>
+                Skills to improve
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+    <!-- RECENT APPLICATIONS -->
+
+
+    <section class="panel">
+
+
+        <h2>
+            📄 Recent Applications
+        </h2>
+
+
+
+        <table>
+
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Company
+                    </th>
+
+                    <th>
+                        Position
+                    </th>
+
+                    <th>
+                        Status
+                    </th>
+
+                    <th>
+                        Date
+                    </th>
+
+
+                </tr>
+
+            </thead>
+
+
+
+            <tbody id="applicationsTable">
+
+
+            </tbody>
+
+
+        </table>
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+    <!-- MAIN CONTENT -->
+
+
+    <section class="content">
+
+
+
+
+
+
+        <!-- AI SKILL ANALYSIS -->
+
+
+        <div class="panel">
+
+
+            <h2>
+                🧠 Skill Match Analysis
+            </h2>
+
+
+            <p>
+                Analyze your skills against real job descriptions.
+            </p>
+
+
+
+            <textarea
+
+                id="jobDescription"
+
+                placeholder="Paste job description here..."
+
+                rows="8">
+
+            </textarea>
+
+
+
+
+            <button id="analyzeBtn" type="button">
+
+                Analyze Skills
+
+            </button>
+
+
+
+
+            <div id="results">
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+      <!-- AI ASSISTANT -->
+
+<div class="panel">
+
+
+    <h2>
+        🤖 Career Pilot AI Assistant
+    </h2>
+
+
+    <p>
+        Ask questions, prepare for interviews,
+        and get career guidance.
+    </p>
+
+
+
+    <textarea
+
+        id="assistantQuestion"
+
+        placeholder="Ask Career Pilot AI anything..."
+
+        rows="5">
+
+    </textarea>
+
+
+
+<button 
+    id="assistantBtn"
+    type="button"
+    onclick="console.log('AI BUTTON WORKING'); askAssistant();">
+
+    Ask AI
+
+</button>
+
+
+
+
+    <div id="assistantAnswer">
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+        <!-- APPLICATION MANAGEMENT -->
+
+
+        <div class="panel">
+
+
+            <h2>
+                📄 Job Applications
+            </h2>
+
+
+            <p>
+                View, add, edit, search and manage
+                all your job applications.
+            </p>
+
+
+
+
+            <a 
+
+                href="{% url 'applications' %}"
+
+                class="application-action-btn">
+
+
+                📄 Applications
+
+
+            </a>
+
+
+
+        </div>
+
+        <!-- AI RESUME ANALYZER -->
+
+<div class="panel">
+
+    <h2>
+        📄 AI Resume Analyzer
+    </h2>
+
+    <p>
+        Upload your resume and receive an AI-powered ATS analysis.
+    </p>
+
+    <input
+        type="file"
+        id="resumeFile"
+        accept=".pdf"
+    >
+
+    <button
+        id="analyzeResumeBtn"
+        type="button">
+
+        Analyze Resume
+
+    </button>
+
+    <div id="resumeResults">
+
+    </div>
+
+</div>
+<!-- RESUME JOB MATCH -->
+
+<div class="panel">
+
+    <h2>
+        🎯 Resume Job Match
+    </h2>
+
+
+    <p>
+        Compare your resume against a job description.
+    </p>
+
+
+    <input
+        type="file"
+        id="matchResume"
+        accept=".pdf"
+    >
+
+
+    <textarea
+        id="matchJobDescription"
+        placeholder="Paste job description here..."
+        rows="8">
+    </textarea>
+
+
+
+    <button
+        id="matchBtn"
+        type="button">
+
+        Analyze Match
+
+    </button>
+
+
+
+    <div id="matchResults">
+
+    </div>
+
+
+</div>
+
+
+
+
+
+    </section>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<script src="{% static 'dashboard.js' %}"></script>
+
+<script src="{% static 'assistant.js' %}"></script>
+
+<script src="{% static 'resume.js' %}"></script>
+
+<script src="{% static 'match.js' %}"></script>
+
+
+
+</body>
+
+
+</html>

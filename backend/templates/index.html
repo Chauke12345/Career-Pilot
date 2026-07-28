@@ -1,0 +1,178 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Career Pilot AI</title>
+
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+
+
+<body>
+
+
+<div class="dashboard">
+
+
+<div class="dashboard-header">
+
+    <h1>
+        🚀 Career Pilot AI
+    </h1>
+
+
+    <button>
+        Profile
+    </button>
+
+</div>
+
+
+
+<div class="welcome">
+
+<h2>
+Welcome back 👋
+</h2>
+
+<p>
+Analyze any job and see how well you match.
+</p>
+
+</div>
+
+
+
+
+<div class="stats">
+
+
+<div class="card">
+
+<h3>
+🎯 Skill Match
+</h3>
+
+<h2 id="matchScore">
+--
+</h2>
+
+<p>
+AI compatibility score
+</p>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h3>
+🧠 Skills Found
+</h3>
+
+<h2 id="skillsCount">
+--
+</h2>
+
+<p>
+Detected from job description
+</p>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<h3>
+📈 Improvement
+</h3>
+
+<h2 id="missingCount">
+--
+</h2>
+
+<p>
+Recommended skills
+</p>
+
+</div>
+
+
+
+</div>
+
+
+
+
+<div class="panel">
+
+
+<h2>
+📄 Analyze Job Description
+</h2>
+
+
+
+<textarea
+id="jobDescription"
+placeholder="Paste the job description here..."
+></textarea>
+
+
+
+<button id="analyzeBtn">
+
+🚀 Run AI Analysis
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="panel">
+
+
+<h2>
+🤖 AI Report
+</h2>
+
+
+
+<div id="results">
+
+No analysis yet.
+
+</div>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+<script src="{% static 'app.js' %}"></script>
+
+
+</body>
+
+</html>

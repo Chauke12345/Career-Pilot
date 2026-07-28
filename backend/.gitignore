@@ -1,0 +1,24 @@
+# Environment
+.env
+backend/.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environment
+.venv/
+
+# Django
+db.sqlite3
+backend/db.sqlite3
+
+# Static
+staticfiles/
+
+# User uploads
+media/
+backend/resumes/
+
+# IDE
+.vscode/
