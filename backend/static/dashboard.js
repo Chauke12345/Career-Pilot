@@ -93,9 +93,9 @@ async function loadDashboard(){
 
 
         document.getElementById(
-            "successRate"
-        ).innerHTML =
-        `${data.success_rate || 0}%`;
+    "successRate"
+).innerHTML =
+`${data.success_rate || "0%"}`;
 
     }
 
