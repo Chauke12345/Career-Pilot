@@ -1,11 +1,20 @@
 const API_URL = "";
 
-const token = localStorage.getItem("access");
+
+// GET TOKEN WHEN NEEDED
+function getToken() {
+
+    return localStorage.getItem("access");
+
+}
 
 
 
-async function loadApplications() {
+// AUTH CHECK
 
+function checkAuth() {
+
+    const token = getToken();
 
     if (!token) {
 
@@ -13,134 +22,155 @@ async function loadApplications() {
 
         window.location.href = "/login/";
 
-        return;
+        return false;
 
     }
 
+    return true;
+
+}
 
 
-    const response = await fetch(
 
-        `${API_URL}/api/applications/`,
 
-        {
 
-            headers: {
+// LOAD APPLICATIONS
 
-                "Authorization":
-                `Bearer ${token}`,
+async function loadApplications() {
 
-                "Content-Type":
-                "application/json"
+
+    if (!checkAuth()) return;
+
+
+    const token = getToken();
+
+
+
+    try {
+
+
+        const response = await fetch(
+
+            `${API_URL}/api/applications/`,
+
+            {
+
+                headers: {
+
+                    "Authorization":
+                    `Bearer ${token}`
+
+                }
 
             }
 
-        }
-
-    );
-
-
-
-    if (!response.ok) {
-
-
-        alert(
-            "Session expired. Please login again."
         );
 
 
-        localStorage.removeItem("access");
+
+        if (!response.ok) {
 
 
-        window.location.href = "/login/";
+            localStorage.removeItem("access");
 
 
-        return;
+            alert(
+                "Session expired. Please login again."
+            );
+
+
+            window.location.href = "/login/";
+
+
+            return;
+
+        }
+
+
+
+        const data = await response.json();
+
+
+
+        const applications = data.results || data;
+
+
+
+        const tbody =
+        document.getElementById(
+            "applicationsBody"
+        );
+
+
+
+        if (!tbody) return;
+
+
+
+        tbody.innerHTML = "";
+
+
+
+        applications.forEach(app => {
+
+
+
+            tbody.innerHTML += `
+
+            <tr>
+
+                <td>${app.company}</td>
+
+                <td>${app.position}</td>
+
+                <td>${app.status}</td>
+
+                <td>${app.date_applied}</td>
+
+
+                <td>
+
+
+                    <button onclick="editApplication(${app.id})">
+
+                        Edit
+
+                    </button>
+
+
+                    <button onclick="deleteApplication(${app.id})">
+
+                        Delete
+
+                    </button>
+
+
+                </td>
+
+
+            </tr>
+
+
+            `;
+
+
+        });
+
+
 
     }
 
 
+    catch(error) {
 
 
-    const data = await response.json();
+        console.error(
+            "Loading applications failed:",
+            error
+        );
 
 
-
-    const tbody =
-    document.getElementById(
-        "applicationsBody"
-    );
-
-
-
-    tbody.innerHTML = "";
-
-
-
-    data.results.forEach(app => {
-
-
-
-        tbody.innerHTML += `
-
-
-        <tr>
-
-
-            <td>
-                ${app.company}
-            </td>
-
-
-            <td>
-                ${app.position}
-            </td>
-
-
-            <td>
-                ${app.status}
-            </td>
-
-
-            <td>
-                ${app.date_applied}
-            </td>
-
-
-
-            <td>
-
-
-                <button
-                onclick="editApplication(${app.id})">
-
-                    Edit
-
-                </button>
-
-
-
-                <button
-                onclick="deleteApplication(${app.id})">
-
-                    Delete
-
-                </button>
-
-
-            </td>
-
-
-
-        </tr>
-
-
-        `;
-
-
-
-    });
-
+    }
 
 
 }
@@ -150,12 +180,21 @@ async function loadApplications() {
 
 
 
+
 // CREATE APPLICATION
 
 
-document
-.getElementById("applicationForm")
-.addEventListener(
+const applicationForm =
+document.getElementById(
+    "applicationForm"
+);
+
+
+
+if(applicationForm){
+
+
+applicationForm.addEventListener(
 
 "submit",
 
@@ -166,152 +205,153 @@ async function(e){
 
 
 
-    const response = await fetch(
-
-        `${API_URL}/api/applications/`,
-
-        {
-
-
-            method:"POST",
+    const token = getToken();
 
 
 
-            headers:{
+    const payload = {
 
 
-                "Content-Type":
-                "application/json",
+        company:
+        document.getElementById(
+            "company"
+        ).value,
 
 
-                "Authorization":
-                `Bearer ${token}`
+        position:
+        document.getElementById(
+            "position"
+        ).value,
 
 
-            },
+        location:
+        document.getElementById(
+            "location"
+        ).value,
 
 
-
-            body:JSON.stringify({
-
-
-                company:
-
-                document
-                .getElementById("company")
-                .value,
+        status:
+        document.getElementById(
+            "status"
+        ).value,
 
 
-
-                position:
-
-                document
-                .getElementById("position")
-                .value,
+        date_applied:
+        document.getElementById(
+            "date_applied"
+        ).value,
 
 
-
-                location:
-
-                document
-                .getElementById("location")
-                .value,
+        job_link:
+        document.getElementById(
+            "job_link"
+        ).value,
 
 
-
-                status:
-
-                document
-                .getElementById("status")
-                .value,
+        notes:
+        document.getElementById(
+            "notes"
+        ).value
 
 
-
-                date_applied:
-
-                document
-                .getElementById("date_applied")
-                .value,
+    };
 
 
 
-                job_link:
-
-                document
-                .getElementById("job_link")
-                .value,
+    try{
 
 
+        const response = await fetch(
 
-                notes:
+            `${API_URL}/api/applications/`,
 
-                document
-                .getElementById("notes")
-                .value
-
+            {
 
 
-            })
+                method:"POST",
+
+
+                headers:{
+
+
+                    "Content-Type":
+                    "application/json",
+
+
+                    "Authorization":
+                    `Bearer ${token}`
+
+
+                },
+
+
+                body:
+                JSON.stringify(payload)
+
+
+            }
+
+        );
+
+
+
+        const data =
+        await response.json();
+
+
+
+        if(response.ok){
+
+
+            alert(
+                "Application saved!"
+            );
+
+
+            applicationForm.reset();
+
+
+            loadApplications();
 
 
         }
 
-    );
+        else{
 
 
-
-    const data =
-    await response.json();
-
-
-
-    console.log(data);
+            console.error(
+                "Save error:",
+                data
+            );
 
 
+            alert(
+                "Failed to save application"
+            );
 
 
-    if(response.ok){
-
-
-        alert(
-            "Application saved!"
-        );
-
-
-
-        document
-        .getElementById("applicationForm")
-        .reset();
-
-
-
-        loadApplications();
+        }
 
 
 
     }
 
-    else{
+    catch(error){
 
 
-        console.log(
-            "Save error:",
-            data
-        );
-
-
-        alert(
-            "Failed to save application"
+        console.error(
+            error
         );
 
 
     }
 
+
+
+});
 
 
 }
-
-);
 
 
 
@@ -332,12 +372,12 @@ async function deleteApplication(id){
         !confirm(
             "Delete this application?"
         )
-    ){
+    )
+    return;
 
-        return;
 
-    }
 
+    const token = getToken();
 
 
 
@@ -349,7 +389,6 @@ async function deleteApplication(id){
 
 
             method:"DELETE",
-
 
 
             headers:{
@@ -368,10 +407,7 @@ async function deleteApplication(id){
 
 
 
-
-
     if(response.ok){
-
 
 
         alert(
@@ -379,9 +415,7 @@ async function deleteApplication(id){
         );
 
 
-
         loadApplications();
-
 
 
     }
@@ -397,7 +431,6 @@ async function deleteApplication(id){
     }
 
 
-
 }
 
 
@@ -410,6 +443,7 @@ async function deleteApplication(id){
 
 // EDIT APPLICATION
 
+
 let editingId = null;
 
 
@@ -420,6 +454,10 @@ async function editApplication(id){
     editingId = id;
 
 
+    const token = getToken();
+
+
+
     const response = await fetch(
 
         `${API_URL}/api/applications/${id}/`,
@@ -428,17 +466,22 @@ async function editApplication(id){
 
             headers:{
 
+
                 "Authorization":
                 `Bearer ${token}`
 
+
             }
+
 
         }
 
     );
 
 
-    const app = await response.json();
+
+    const app =
+    await response.json();
 
 
 
@@ -480,10 +523,13 @@ async function editApplication(id){
 
     document.getElementById(
         "editModal"
-    ).style.display = "flex";
+    ).style.display="flex";
 
 
 }
+
+
+
 
 
 
@@ -494,7 +540,7 @@ function closeEdit(){
 
     document.getElementById(
         "editModal"
-    ).style.display = "none";
+    ).style.display="none";
 
 
 }
@@ -503,7 +549,14 @@ function closeEdit(){
 
 
 
+
+
+
 async function saveEdit(){
+
+
+    const token = getToken();
+
 
 
     const response = await fetch(

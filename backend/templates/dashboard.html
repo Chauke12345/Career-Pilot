@@ -5,12 +5,21 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-    <title>Career Pilot AI Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+<title>
+Career Pilot AI Dashboard
+</title>
+
+
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+
+<link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+
 
 </head>
 
@@ -21,389 +30,403 @@
 <div class="dashboard">
 
 
-    <!-- HEADER -->
 
-    <header class="dashboard-header">
+<!-- HEADER -->
 
+<header class="dashboard-header">
 
-        <div>
 
-            <h1>
-                🚀 Career Pilot AI
-            </h1>
+<div>
 
-            <p>
-                Your AI-powered career command center
-            </p>
+<h1>
+🚀 Career Pilot AI
+</h1>
 
-        </div>
 
+<p>
+Your AI-powered career command center
+</p>
 
-        <button id="logoutBtn" type="button">
 
-            Logout
-
-        </button>
-
-
-    </header>
-
-
-
-
-
-    <!-- WELCOME -->
-
-    <section class="welcome">
-
-        <h2>
-            Welcome back 👋
-        </h2>
-
-        <p>
-            Track your applications, improve your skills,
-            and accelerate your career.
-        </p>
-
-    </section>
-
-
-
-
-
-
-
-    <!-- DASHBOARD STATS -->
-
-
-    <section class="stats">
-
-
-        <div class="card">
-
-            <h3>
-                📄 Applications
-            </h3>
-
-            <h2 id="totalApplications">
-                0
-            </h2>
-
-            <p>
-                Total applications
-            </p>
-
-        </div>
-
-
-
-
-
-        <div class="card">
-
-            <h3>
-                🎯 Interviews
-            </h3>
-
-            <h2 id="interviews">
-                0
-            </h2>
-
-            <p>
-                Interview opportunities
-            </p>
-
-        </div>
-
-
-
-
-
-
-        <div class="card">
-
-            <h3>
-                🏆 Offers
-            </h3>
-
-            <h2 id="offers">
-                0
-            </h2>
-
-            <p>
-                Successful applications
-            </p>
-
-        </div>
-
-
-
-
-
-
-
-        <div class="card">
-
-            <h3>
-                📈 Success Rate
-            </h3>
-
-            <h2 id="successRate">
-                0%
-            </h2>
-
-            <p>
-                Career progress
-            </p>
-
-        </div>
-
-
-
-
-
-
-
-        <div class="card">
-
-            <h3>
-                🧠 Skill Match
-            </h3>
-
-            <h2 id="matchScore">
-                0%
-            </h2>
-
-            <p>
-                Job compatibility
-            </p>
-
-        </div>
-
-
-
-
-
-
-        <div class="card">
-
-            <h3>
-                ✅ Skills Found
-            </h3>
-
-            <h2 id="skillsCount">
-                0
-            </h2>
-
-            <p>
-                Matching skills
-            </p>
-
-        </div>
-
-
-
-
-
-
-        <div class="card">
-
-            <h3>
-                ⚠ Missing Skills
-            </h3>
-
-            <h2 id="missingCount">
-                0
-            </h2>
-
-            <p>
-                Skills to improve
-            </p>
-
-        </div>
-
-
-    </section>
-
-
-
-
-
-
-
-
-
-    <!-- RECENT APPLICATIONS -->
-
-
-    <section class="panel">
-
-
-        <h2>
-            📄 Recent Applications
-        </h2>
-
-
-
-        <table>
-
-
-            <thead>
-
-                <tr>
-
-                    <th>
-                        Company
-                    </th>
-
-                    <th>
-                        Position
-                    </th>
-
-                    <th>
-                        Status
-                    </th>
-
-                    <th>
-                        Date
-                    </th>
-
-
-                </tr>
-
-            </thead>
-
-
-
-            <tbody id="applicationsTable">
-
-
-            </tbody>
-
-
-        </table>
-
-
-    </section>
-
-
-
-
-
-
-
-
-
-    <!-- MAIN CONTENT -->
-
-
-    <section class="content">
-
-
-
-
-
-
-        <!-- AI SKILL ANALYSIS -->
-
-
-        <div class="panel">
-
-
-            <h2>
-                🧠 Skill Match Analysis
-            </h2>
-
-
-            <p>
-                Analyze your skills against real job descriptions.
-            </p>
-
-
-
-            <textarea
-
-                id="jobDescription"
-
-                placeholder="Paste job description here..."
-
-                rows="8">
-
-            </textarea>
-
-
-
-
-            <button id="analyzeBtn" type="button">
-
-                Analyze Skills
-
-            </button>
-
-
-
-
-            <div id="results">
-
-
-            </div>
-
-
-
-        </div>
-
-
-
-
-
-
-
-
-      <!-- AI ASSISTANT -->
-
-<div class="panel">
-
-
-    <h2>
-        🤖 Career Pilot AI Assistant
-    </h2>
-
-
-    <p>
-        Ask questions, prepare for interviews,
-        and get career guidance.
-    </p>
-
-
-
-    <textarea
-
-        id="assistantQuestion"
-
-        placeholder="Ask Career Pilot AI anything..."
-
-        rows="5">
-
-    </textarea>
+</div>
 
 
 
 <button 
-    id="assistantBtn"
-    type="button"
-    onclick="console.log('AI BUTTON WORKING'); askAssistant();">
+id="logoutBtn"
+type="button">
 
-    Ask AI
+Logout
+
+</button>
+
+
+
+</header>
+
+
+
+
+
+<!-- WELCOME -->
+
+<section class="welcome">
+
+
+<h2>
+Welcome back 👋
+</h2>
+
+
+<p>
+Track applications, analyze CVs,
+and improve your career opportunities.
+</p>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- DASHBOARD CARDS -->
+
+<section class="stats">
+
+
+<div class="card">
+
+<h3>
+📄 Applications
+</h3>
+
+<h2 id="totalApplications">
+0
+</h2>
+
+<p>
+Total applications
+</p>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h3>
+🎯 Interviews
+</h3>
+
+<h2 id="interviews">
+0
+</h2>
+
+<p>
+Interview opportunities
+</p>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<h3>
+🏆 Offers
+</h3>
+
+<h2 id="offers">
+0
+</h2>
+
+<p>
+Successful applications
+</p>
+
+</div>
+
+
+
+
+
+
+<div class="card">
+
+<h3>
+📈 Success Rate
+</h3>
+
+<h2 id="successRate">
+0%
+</h2>
+
+<p>
+Career progress
+</p>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<h3>
+🧠 Skill Match
+</h3>
+
+<h2 id="matchScore">
+0%
+</h2>
+
+<p>
+Job compatibility
+</p>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<h3>
+✅ Skills Found
+</h3>
+
+<h2 id="skillsCount">
+0
+</h2>
+
+<p>
+Matching skills
+</p>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<h3>
+⚠ Missing Skills
+</h3>
+
+<h2 id="missingCount">
+0
+</h2>
+
+<p>
+Skills to improve
+</p>
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- APPLICATION TABLE -->
+
+<section class="panel">
+
+
+<h2>
+📄 Recent Applications
+</h2>
+
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>
+Company
+</th>
+
+
+<th>
+Position
+</th>
+
+
+<th>
+Status
+</th>
+
+
+<th>
+Date
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+
+<tbody id="applicationsTable">
+
+
+</tbody>
+
+
+
+</table>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- MAIN CONTENT -->
+
+
+<section class="content">
+
+
+
+
+
+
+
+<!-- JOB DESCRIPTION ANALYZER -->
+
+
+<div class="panel">
+
+
+<h2>
+🧠 Skill Match Analysis
+</h2>
+
+
+<p>
+Analyze your skills against real job descriptions.
+</p>
+
+
+
+<textarea
+
+id="jobDescription"
+
+placeholder="Paste job description here..."
+
+rows="8">
+
+</textarea>
+
+
+
+
+<button
+
+id="analyzeBtn"
+
+type="button">
+
+Analyze Skills
+
+</button>
+
+
+
+<div id="results">
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- AI ASSISTANT -->
+
+
+<div class="panel">
+
+
+<h2>
+🤖 Career Pilot AI Assistant
+</h2>
+
+
+<p>
+Ask questions, prepare interviews,
+and get career guidance.
+</p>
+
+
+
+<textarea
+
+id="assistantQuestion"
+
+placeholder="Ask Career Pilot AI anything..."
+
+rows="5">
+
+</textarea>
+
+
+
+
+<button
+
+id="assistantBtn"
+
+type="button">
+
+Ask AI
 
 </button>
 
 
 
 
-    <div id="assistantAnswer">
+<div id="assistantAnswer">
 
 
-    </div>
+</div>
 
 
 
@@ -416,126 +439,95 @@
 
 
 
-        <!-- APPLICATION MANAGEMENT -->
 
+<!-- APPLICATION MANAGEMENT -->
 
-        <div class="panel">
-
-
-            <h2>
-                📄 Job Applications
-            </h2>
-
-
-            <p>
-                View, add, edit, search and manage
-                all your job applications.
-            </p>
-
-
-
-
-            <a 
-
-                href="{% url 'applications' %}"
-
-                class="application-action-btn">
-
-
-                📄 Applications
-
-
-            </a>
-
-
-
-        </div>
-
-        <!-- AI RESUME ANALYZER -->
 
 <div class="panel">
 
-    <h2>
-        📄 AI Resume Analyzer
-    </h2>
 
-    <p>
-        Upload your resume and receive an AI-powered ATS analysis.
-    </p>
+<h2>
+📄 Job Applications
+</h2>
 
-    <input
-        type="file"
-        id="resumeFile"
-        accept=".pdf"
-    >
 
-    <button
-        id="analyzeResumeBtn"
-        type="button">
+<p>
+Manage your applications and track progress.
+</p>
 
-        Analyze Resume
 
-    </button>
 
-    <div id="resumeResults">
+<a
 
-    </div>
+href="{% url 'applications' %}"
+
+class="application-action-btn">
+
+
+📄 Applications
+
+
+</a>
+
+
 
 </div>
-<!-- RESUME JOB MATCH -->
+
+
+
+
+
+
+
+
+
+<!-- CV ANALYZER -->
+
 
 <div class="panel">
 
-    <h2>
-        🎯 Resume Job Match
-    </h2>
 
-
-    <p>
-        Compare your resume against a job description.
-    </p>
-
-
-    <input
-        type="file"
-        id="matchResume"
-        accept=".pdf"
-    >
-
-
-    <textarea
-        id="matchJobDescription"
-        placeholder="Paste job description here..."
-        rows="8">
-    </textarea>
+<h2>
+📄 AI Resume Analyzer
+</h2>
 
 
 
-    <button
-        id="matchBtn"
-        type="button">
-
-        Analyze Match
-
-    </button>
+<p>
+Upload your CV and receive AI-powered resume quality scoring, strengths analysis and improvement recommendations.
+</p>
 
 
 
-    <div id="matchResults">
+<input
 
-    </div>
+type="file"
+
+id="resumeFile"
+
+accept=".pdf,.docx">
+
+
+
+
+
+<button
+
+id="analyzeResumeBtn"
+
+type="button">
+
+Analyze CV
+
+</button>
+
+
+
+
+<div id="resumeResults">
 
 
 </div>
-
-
-
-
-
-    </section>
-
-
-
 
 
 
@@ -545,6 +537,101 @@
 
 
 
+
+
+
+
+<!-- CV JOB MATCH -->
+
+
+<div class="panel">
+
+
+<h2>
+🎯 CV Job Match
+</h2>
+
+
+
+<p>
+Compare your CV against a job description.
+</p>
+
+
+
+
+<input
+
+type="file"
+
+id="matchResume"
+
+accept=".pdf,.docx">
+
+
+
+
+
+<textarea
+
+id="matchJobDescription"
+
+placeholder="Paste job description here..."
+
+rows="8">
+
+</textarea>
+
+
+
+
+
+
+<button
+
+id="matchBtn"
+
+type="button">
+
+Analyze Job Match
+
+</button>
+
+
+
+
+
+<div id="matchResults">
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+</section>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- JAVASCRIPT -->
 
 <script src="{% static 'dashboard.js' %}"></script>
 

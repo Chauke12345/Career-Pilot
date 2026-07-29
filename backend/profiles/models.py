@@ -49,6 +49,31 @@ class Profile(models.Model):
     )
 
 
+
+    # ==========================
+    # CV / RESUME STORAGE
+    # ==========================
+
+
+    resume = models.FileField(
+        upload_to="resumes/",
+        blank=True,
+        null=True
+    )
+
+
+    resume_text = models.TextField(
+        blank=True,
+        help_text="Extracted CV text for AI analysis"
+    )
+
+
+    resume_updated_at = models.DateTimeField(
+        auto_now=True
+    )
+
+
+
     created_at = models.DateTimeField(
         auto_now_add=True
     )
@@ -57,6 +82,7 @@ class Profile(models.Model):
     updated_at = models.DateTimeField(
         auto_now=True
     )
+
 
 
     def __str__(self):

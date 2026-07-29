@@ -35,7 +35,7 @@ SECRET_KEY = os.getenv(
     "django-insecure-development-key"
 )
 
-DEBUG = os.getenv("DEBUG", "False") == "True"
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "career-pilot-y6y9.onrender.com",
@@ -166,6 +166,7 @@ USE_TZ = True
 
 
 # STATIC FILES
+# STATIC FILES
 
 STATIC_URL = "/static/"
 
@@ -175,12 +176,29 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
+
+# MEDIA FILES (Resume uploads)
+
+MEDIA_URL = "/media/"
+
+MEDIA_ROOT = BASE_DIR / "media"
+
+
+
+# STORAGE CONFIGURATION
+
 STORAGES = {
+
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+
+
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
-}
 
+}
 
 # DJANGO REST FRAMEWORK
 

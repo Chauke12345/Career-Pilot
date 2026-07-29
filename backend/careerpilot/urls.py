@@ -93,7 +93,7 @@ urlpatterns = [
 
 
     # =========================
-    # RESUME ANALYZER
+    # RESUME QUALITY ANALYZER
     # =========================
 
     path(

@@ -40,7 +40,7 @@ Format:
 {{
 "match_score":0,
 "matching_skills":[],
-"missing_skills":[],
+"weaknesses":[]
 "recommendation":""
 }}
 
