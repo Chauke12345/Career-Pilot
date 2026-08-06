@@ -3,7 +3,11 @@ console.log("Career Pilot AI dashboard loaded");
 
 const API_URL = "";
 
-const token = localStorage.getItem("access");
+function getToken(){
+
+    return localStorage.getItem("access");
+
+}
 
 
 
@@ -304,14 +308,14 @@ return;
 document.getElementById(
 "matchScore"
 ).innerHTML =
-`${data.match_score || 0}%`;
+`${data.confidence_score || 0}%`;
 
 
 
 document.getElementById(
 "skillsCount"
 ).innerHTML =
-(data.skills_found || []).length;
+(data.confirmed_skills || []).length;
 
 
 
@@ -319,8 +323,6 @@ document.getElementById(
 "missingCount"
 ).innerHTML =
 (data.missing_skills || []).length;
-
-
 
 
 // SHOW REPORT
@@ -338,18 +340,36 @@ results.innerHTML = `
 
 
 <h1>
-${data.match_score || 0}%
+${data.confidence_score || 0}%
 </h1>
 
 
 <h3>
-✅ Skills Found
+✅ Confirmed Skills
 </h3>
 
 <p>
+${(data.confirmed_skills || []).join(", ")}
+</p>
 
-${(data.skills_found || []).join(", ")}
 
+
+<h3>
+🔗 Related Skills
+</h3>
+
+<p>
+${(data.related_skills || []).join(", ")}
+</p>
+
+
+
+<h3>
+⚠ Missing Skills
+</h3>
+
+<p>
+${(data.missing_skills || []).join(", ")}
 </p>
 
 
