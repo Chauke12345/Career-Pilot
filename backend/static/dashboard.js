@@ -9,7 +9,7 @@ function getToken(){
 
 }
 
-
+const token = getToken();
 
 // =======================
 // LOGOUT
