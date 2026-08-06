@@ -44,7 +44,7 @@ ALLOWED_HOSTS = os.getenv(
 
 CSRF_TRUSTED_ORIGINS = os.getenv(
     "CSRF_TRUSTED_ORIGINS",
-    "https://career-pilot-y6y9.onrender.com"
+    "https://career-pilot-production-4a61.up.railway.app"
 ).split(",")
 
 # APPLICATIONS
